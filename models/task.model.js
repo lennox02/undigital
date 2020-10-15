@@ -144,7 +144,7 @@ Task.remove = (id, result) => {
             return;
         }
 
-        console.log("deleted task with id: ", id);
+        console.log("deleted task with id: ", taskGroup.id);
         result(null, res);
     });
 };

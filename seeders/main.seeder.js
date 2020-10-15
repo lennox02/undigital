@@ -32,7 +32,8 @@ Seeder.createTables = result => {
         console.log("tables: ", res);
     });
 
-    sql.query("CREATE TABLE IF NOT EXISTS task_dependencies (id int NOT NULL AUTO_INCREMENT, task_id int, dependency_task_id int, PRIMARY KEY (id))", (err, res) => {
+    sql.query("CREATE TABLE IF NOT EXISTS task_dependencies (id int NOT NULL AUTO_INCREMENT, task_id int," +
+        " task_dependency_id int, PRIMARY KEY (id))", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

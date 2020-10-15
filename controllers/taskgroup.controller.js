@@ -39,24 +39,24 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single TaskGroup with a taskGroupId
+// Find a single TaskGroup with a id
 exports.findOne = (req, res) => {
-    TaskGroup.findById(req.params.taskGroupId, (err, data) => {
+    TaskGroup.findById(req.body.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found TaskGroup with id ${req.params.taskGroupId}.`
+                    message: `Not found TaskGroup with id ${req.body.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Error retrieving TaskGroup with id " + req.params.taskGroupId
+                    message: "Error retrieving TaskGroup with id " + req.body.id
                 });
             }
         } else res.send(data);
     });
 };
 
-// Update a TaskGroup identified by the taskGroupId in the request
+// Update a TaskGroup identified by the id in the request
 exports.update = (req, res) => {
     // Validate Request
     if (!req.body) {
@@ -68,17 +68,16 @@ exports.update = (req, res) => {
     console.log(req.body);
 
     TaskGroup.updateById(
-        req.params.taskGroupId,
         new TaskGroup(req.body),
         (err, data) => {
             if (err) {
                 if (err.kind === "not_found") {
                     res.status(404).send({
-                        message: `Not found TaskGroup with id ${req.params.taskGroupId}.`
+                        message: `Not found TaskGroup with id ${req.body.id}.`
                     });
                 } else {
                     res.status(500).send({
-                        message: "Error updating TaskGroup with id " + req.params.taskGroupId
+                        message: "Error updating TaskGroup with id " + req.body.id
                     });
                 }
             } else res.send(data);
@@ -86,17 +85,17 @@ exports.update = (req, res) => {
     );
 };
 
-// Delete a TaskGroup with the specified taskGroupId in the request
+// Delete a TaskGroup with the specified id in the request
 exports.delete = (req, res) => {
-    TaskGroup.remove(req.params.taskGroupId, (err, data) => {
+    TaskGroup.remove(req.body.id, (err, data) => {
         if (err) {
             if (err.kind === "not_found") {
                 res.status(404).send({
-                    message: `Not found TaskGroup with id ${req.params.taskGroupId}.`
+                    message: `Not found TaskGroup with id ${req.body.id}.`
                 });
             } else {
                 res.status(500).send({
-                    message: "Could not delete TaskGroup with id " + req.params.taskGroupId
+                    message: "Could not delete TaskGroup with id " + req.body.id
                 });
             }
         } else res.send({ message: `TaskGroup was deleted successfully!` });

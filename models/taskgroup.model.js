@@ -2,9 +2,8 @@ const sql = require("./db.js");
 
 // constructor
 const TaskGroup = function(taskGroup) {
-    this.email = taskGroup.email;
+    this.id = taskGroup.id;
     this.name = taskGroup.name;
-    this.active = taskGroup.active;
 };
 
 TaskGroup.create = (newTaskGroup, result) => {
@@ -40,7 +39,7 @@ TaskGroup.findById = (taskGroupId, result) => {
 };
 
 TaskGroup.getAll = result => {
-    sql.query("SELECT * FROM taskGroups", (err, res) => {
+    sql.query("SELECT * FROM task_groups", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -52,10 +51,10 @@ TaskGroup.getAll = result => {
     });
 };
 
-TaskGroup.updateById = (id, taskGroup, result) => {
+TaskGroup.updateById = (taskGroup, result) => {
     sql.query(
-        "UPDATE task_groups SET name = ?WHERE id = ?",
-        [taskGroup.name, id],
+        "UPDATE task_groups SET name = ? WHERE id = ?",
+        [taskGroup.name, taskGroup.id],
         (err, res) => {
             if (err) {
                 console.log("error: ", err);
@@ -69,14 +68,15 @@ TaskGroup.updateById = (id, taskGroup, result) => {
                 return;
             }
 
-            console.log("updated taskGroup: ", { id: id, ...taskGroup });
-            result(null, { id: id, ...taskGroup });
+            console.log("updated taskGroup: ", { id: taskGroup.id, ...taskGroup });
+            result(null, { id: taskGroup.id, ...taskGroup });
         }
     );
 };
 
 TaskGroup.remove = (id, result) => {
-    sql.query("DELETE FROM task_groups WHERE id = ?", id, (err, res) => {
+    sql.query(
+        "DELETE FROM task_groups WHERE id = ?", id, (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

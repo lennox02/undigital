@@ -27,10 +27,10 @@ Next please download postman and use the postman collection file in the root of 
 project to see a list of the available endpoints with prepopulated data.
 
 The last step before you can begin playing with the endpoints is to first hit the
-`Seeder` endpoint, which will create your database tables.  After than you can create
-your data in whatever order you wish.
+`Seeder` endpoint, which will create your database tables.  After the tables have
+been created you can add your data in whatever order you wish.
 
-Please note that although their are foreign key relationships in the sql tables,
+Please note that although there are foreign key relationships in the sql tables,
 I have not defined those relationships in sql, so you you can insert a foreign key 
 id that does not already exist.  I did so to save time and to avoid creating yet 
 more work for myself.  In general I'm pretty disappointed with Node/Express - the lack
