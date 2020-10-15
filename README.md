@@ -4,6 +4,12 @@
  Please have a mysql server running in your local environment and create a database called
  'undigital'
  
+ Include your db credentials in the config file
+ 
+ ```bash
+config/db.config.js 
+```
+ 
  To install the needed dependencies, please make sure you have node running locally
  and then from the project root run:
  
