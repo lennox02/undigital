@@ -12,7 +12,7 @@ const Seeder = function(seed) {
 Seeder.createTables = result => {
 
     sql.query("CREATE TABLE IF NOT EXISTS tasks (id int NOT NULL AUTO_INCREMENT, name text, task_group_id int, state" +
-        " tinyint, PRIMARY KEY (id))", (err, res) => {
+        " tinyint DEFAULT 0, PRIMARY KEY (id))", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);
@@ -32,8 +32,8 @@ Seeder.createTables = result => {
         console.log("tables: ", res);
     });
 
-    sql.query("CREATE TABLE IF NOT EXISTS task_dependencies (id int NOT NULL AUTO_INCREMENT, task_id int," +
-        " task_dependency_id int, PRIMARY KEY (id))", (err, res) => {
+    sql.query("CREATE TABLE IF NOT EXISTS task_dependencies (task_id int," +
+        " task_dependency_id int, UNIQUE KEY  (task_id, task_dependency_id))", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

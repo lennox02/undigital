@@ -41,7 +41,7 @@ Task.findById = (taskId, result) => {
 };
 
 Task.getAll = result => {
-    sql.query("SELECT * FROM tasks", (err, res) => {
+    sql.query("SELECT * FROM tasks t JOIN task_dependencies td ON t.id=td.task_id", (err, res) => {
         if (err) {
             console.log("error: ", err);
             result(null, err);

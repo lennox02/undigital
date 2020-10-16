@@ -1,4 +1,5 @@
 const Task = require("../models/task.model.js");
+const TaskDependency = require("../models/taskdependency.model.js");
 
 // Create and Save a new Task
 exports.create = (req, res) => {
@@ -81,7 +82,13 @@ exports.update = (req, res) => {
                         message: "Error updating Task with id " + req.body.id
                     });
                 }
-            } else res.send(data);
+            } else {
+                if(req.body.state === 1){
+
+                }
+
+                res.send(data);
+            }
         }
     );
 };
