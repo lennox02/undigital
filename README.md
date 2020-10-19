@@ -1,4 +1,7 @@
 # undigital
+
+### Challenge Details
+ https://github.com/goUnDigital/BackendChallenge
  
  ## Installation
  Please have a mysql server running in your local environment and create a database called

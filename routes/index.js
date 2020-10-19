@@ -39,8 +39,8 @@ router.get('/tasks', tasks.findOne);
 //get all tasks
 router.get('/tasks/all', tasks.findAll);
 
-//get all tasks from a group
-router.get('/tasks/all/group', tasks.findAll);
+//get all tasks within a task group
+router.get('/tasks/all/group', tasks.findByGroup);
 
 //create a task
 router.post('/tasks', tasks.create);
@@ -57,26 +57,20 @@ router.delete('/tasks', tasks.delete);
 //return a task group
 router.get('/task_groups', taskGroups.findOne);
 
-//return a task group
+//return all task groups (i.e. their names)
 router.get('/task_groups/all', taskGroups.findAll);
 
 //create a task group
 router.post('/task_groups', taskGroups.create);
 
-//update a task group
+//update a task group (change task group name)
 router.put('/task_groups', taskGroups.update);
 
 //delete a task group
 router.delete('/task_groups', taskGroups.delete);
 
-//delete all task groups
-router.delete('/task_groups/all', taskGroups.deleteAll);
-
 
 /* -----TASK DEPENDENCIES----- */
-
-//return all task dependencies
-router.get('/task_dependencies/all', taskDependencies.findAll);
 
 /*
 *  Create a single dependency for a single task -

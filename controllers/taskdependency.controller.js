@@ -26,18 +26,6 @@ exports.create = (req, res) => {
     });
 };
 
-// Retrieve all TaskDependencies from the database.
-exports.findAll = (req, res) => {
-    TaskDependency.getAll((err, data) => {
-        if (err)
-            res.status(500).send({
-                message:
-                    err.message || "Some error occurred while retrieving tasks."
-            });
-        else res.send(data);
-    });
-};
-
 // Delete a TaskDependency with the specified id in the request
 exports.delete = (req, res) => {
     TaskDependency.remove(req.body, (err, data) => {

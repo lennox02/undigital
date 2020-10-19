@@ -51,9 +51,6 @@ TaskDependency.remove = (taskDependency, result) => {
             return;
         }
 
-        console.log(taskDependency.taskId)
-        console.log(taskDependency.taskDependencyId)
-
         if (res.affectedRows == 0) {
             // not found TaskDependency with the id
             result({ kind: "not_found" }, null);
@@ -62,6 +59,19 @@ TaskDependency.remove = (taskDependency, result) => {
 
         console.log("deleted taskDependency with task_id: ", taskDependency.taskId);
         result(null, res);
+    });
+};
+
+// method to clear all dependencies by dependency_id
+TaskDependency.removeById = dependency_id => {
+    sql.query("DELETE FROM task_dependencies WHERE task_dependency_id = " + dependency_id, (err, res) => {
+        if (err) {
+            console.log("error: ", err);
+            result(null, err);
+            return;
+        }
+
+        console.log(`deleted ${res.affectedRows} task_dependencies`);
     });
 };
 
